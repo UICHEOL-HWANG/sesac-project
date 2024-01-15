@@ -1,7 +1,19 @@
 document.getElementById("send-button").addEventListener("click", function () {
   const userInput = document.getElementById("user-input").value;
   sendMessageToChatbot(userInput);
+  document.getElementById("user-input").value = '';
 });
+
+document.getElementById("user-input").addEventListener("keypress",function(event){
+  const userInput = document.getElementById("user-input").value;
+  if (event.key == "Enter"){
+    event.preventDefault() ; // 엔터 키 기본 동작 방지 
+    sendMessageToChatbot(userInput)
+  }
+
+  document.getElementById("user-input").value='';
+})
+
 
 function sendMessageToChatbot(message) {
   if (message.trim() === "") {
